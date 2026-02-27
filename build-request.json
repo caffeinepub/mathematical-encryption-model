@@ -1,0 +1,119 @@
+{
+  "kind": "build_request",
+  "title": "Mathematical Encryption Model – Affine Cipher Single-Page App",
+  "projectName": "Mathematical Encryption Model",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a single frontend file (frontend/public/index.html or equivalent static entry) containing a fully self-contained single-page app titled 'Mathematical Encryption Model' with all CSS in a <style> tag and all logic in a <script> tag — no external JS libraries, no build tools, works via file:// protocol.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Everything in one index.html file",
+          "Inline CSS in <style> tag",
+          "Inline JS in <script> tag",
+          "No build tools, no frameworks",
+          "The app must work by opening the HTML file directly in a browser (file:// protocol)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Opening the file directly in a browser (file://) requires no server and loads without errors.",
+        "No external JS or CSS libraries are referenced.",
+        "All styles are inside a <style> tag and all logic inside a <script> tag."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement affine cipher encryption using E(x) = (3x + 5) mod 26 and decryption using D(x) = 9(x − 5) mod 26. Only A–Z and a–z are transformed; spaces, digits, and punctuation pass through unchanged. Original letter case must be preserved in the output.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Encryption: E(x) = (3x + 5) mod 26",
+          "Decryption: D(x) = 9(x − 5) mod 26",
+          "Only letters (A-Z, a-z) are encrypted; spaces, numbers, and punctuation pass through unchanged.",
+          "Preserve original letter case in output."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Encrypting 'Hello World!' produces the correct affine cipher output with 'H', 'W', '!' and space handled correctly.",
+        "Decrypting the encrypted output returns the original plaintext with matching case.",
+        "Non-letter characters appear unchanged in both encrypted and decrypted results."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build the interface layout with five sections: (1) Header with title 'Mathematical Encryption Model' and a subtle subtitle; (2) Input Card with a textarea labeled 'Enter Message'; (3) Button Row with 'Encrypt' and 'Decrypt' buttons side by side; (4) Output Card with two sub-sections — 'Encrypted Text' and 'Decrypted Text' — each showing a result field with a copy-to-clipboard button; (5) Explanation Panel as an accordion with four entries: letter-to-number mapping (A=0…Z=25), modular arithmetic overview, why 9 is the modular inverse of 3 mod 26 (3×9=27≡1 mod 26), and how encryption protects digital data.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Header: Title 'Mathematical Encryption Model' with a subtle subtitle",
+          "Input Card: Textarea labeled 'Enter Message'",
+          "Button Row: Encrypt button and Decrypt button side by side",
+          "Output Card: Two sections — 'Encrypted Text' and 'Decrypted Text' — each with a copyable result field",
+          "Explanation Panel: An info/accordion section with four explanations"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All five layout sections are visible and correctly ordered on page load.",
+        "Clicking Encrypt populates the 'Encrypted Text' result field.",
+        "Clicking Decrypt populates the 'Decrypted Text' result field.",
+        "Each result field has a working copy-to-clipboard button.",
+        "The accordion items expand/collapse individually when clicked.",
+        "All four explanation entries are present with correct mathematical content."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Apply a minimal academic design: white cards on a light gray-blue background, accent color deep navy or indigo, rounded corners (border-radius), soft box shadows on cards, easy-to-read typography (Inter via Google Fonts with system-font fallback), subtle hover animations on buttons, and a subtle reveal animation when results appear. Ensure full mobile responsiveness with appropriate max-width media queries.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Minimal and academic aesthetic",
+          "Card layout with soft box shadows",
+          "Rounded corners (border-radius)",
+          "Easy-to-read fonts (use Google Fonts: Inter or system fonts as fallback)",
+          "Color palette: white cards on a light gray/blue background, accent color deep navy or indigo",
+          "Subtle animations on button hover and result reveal",
+          "Fully responsive for mobile screens (max-width media queries)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Cards display with visible rounded corners and box shadows.",
+        "Background is light gray-blue; cards are white; primary accent color is deep navy or indigo.",
+        "Buttons show a visible hover transition (color shift or shadow change).",
+        "Result fields animate in (e.g., fade or slide) when populated.",
+        "Layout is usable and unclipped on a 375px-wide mobile viewport.",
+        "Inter font loads from Google Fonts; a system-font stack is specified as fallback."
+      ]
+    }
+  ],
+  "constraints": [
+    "No external JavaScript libraries — pure vanilla JS only.",
+    "No build tools or frameworks; the file must work via file:// protocol without a server.",
+    "All CSS and JS must be inline within the single HTML file.",
+    "Google Fonts (Inter) may be loaded via a <link> tag in <head> since it is a font resource, not a JS dependency."
+  ],
+  "nonGoals": [
+    "Backend canister or Motoko logic — this is a fully static frontend-only app.",
+    "Support for cipher parameters other than a=3, b=5.",
+    "User accounts or persistent storage.",
+    "Server-side rendering or a build pipeline."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

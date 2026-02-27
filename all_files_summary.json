@@ -1,0 +1,14 @@
+{
+  "backend/main.mo": "Empty Motoko actor serving as the backend entry point with no implemented methods.",
+  "feature_evidence.json": "Feature evidence report file with an empty features array, indicating no recorded feature evidence.",
+  "frontend-file-summaries.txt": "JSON document summarizing the three main frontend source files: App.tsx (affine cipher app), index.css (design system styles), and tailwind.config.js (Tailwind customization).",
+  "frontend/index.css": "Tailwind base stylesheet defining OKLCH-based CSS custom properties for light and dark themes, covering background, foreground, primary, sidebar, and chart color tokens.",
+  "frontend/index.html": "Minimal HTML entry point that mounts the React app into a root div and loads the main TypeScript module.",
+  "frontend/src/App.tsx": "Main React component implementing an affine cipher tool with encrypt/decrypt functions (E(x)=(3x+5) mod 26, D(x)=9(x−5) mod 26), copy-to-clipboard result fields, and a collapsible accordion explanation panel.",
+  "frontend/src/hooks/useActor.ts": "Custom React hook that creates and caches an ICP backend actor using React Query, supporting both anonymous and authenticated (Internet Identity) usage and invalidating dependent queries when the actor changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Custom React hook and context provider that manages Internet Identity authentication via AuthClient, exposing login/logout functions, identity state, and login status.",
+  "frontend/src/index.css": "Comprehensive stylesheet importing Inter and JetBrains Mono fonts, defining OKLCH design tokens for the navy/indigo color palette, and providing component styles for cards, buttons, accordion, and result fields with animations and mobile responsiveness.",
+  "frontend/src/main.tsx": "React application entry point that wraps the App component with QueryClientProvider and InternetIdentityProvider before rendering into the DOM.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration extending the default theme with Inter/JetBrains Mono fonts, OKLCH color tokens, custom border radii, card box-shadow utilities, and accordion/reveal keyframe animations.",
+  "project_state.json": "Defines the project state for a single-page affine cipher web app ('Mathematical Encryption Model'), including architectural notes, cipher parameters (E(x)=(3x+5) mod 26, D(x)=9(x−5) mod 26), and four pending feature requests covering the HTML file, cipher logic, UI layout, and visual design."
+}

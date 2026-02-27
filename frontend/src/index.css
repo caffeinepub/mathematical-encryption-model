@@ -1,0 +1,662 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design Tokens ─────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Page */
+    --background: 0.955 0.012 240;
+    --foreground: 0.18 0.025 255;
+
+    /* Cards */
+    --card: 1 0 0;
+    --card-foreground: 0.18 0.025 255;
+
+    /* Popover */
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.025 255;
+
+    /* Primary – deep navy/indigo */
+    --primary: 0.32 0.12 264;
+    --primary-foreground: 0.98 0 0;
+
+    /* Secondary */
+    --secondary: 0.93 0.02 240;
+    --secondary-foreground: 0.32 0.12 264;
+
+    /* Muted */
+    --muted: 0.93 0.015 240;
+    --muted-foreground: 0.52 0.04 255;
+
+    /* Accent – indigo tint */
+    --accent: 0.88 0.04 264;
+    --accent-foreground: 0.32 0.12 264;
+
+    /* Destructive */
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    /* Border / Input / Ring */
+    --border: 0.88 0.02 240;
+    --input: 0.88 0.02 240;
+    --ring: 0.52 0.12 264;
+
+    /* Charts */
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+
+    /* Sidebar */
+    --sidebar: 0.97 0.01 240;
+    --sidebar-foreground: 0.18 0.025 255;
+    --sidebar-primary: 0.32 0.12 264;
+    --sidebar-primary-foreground: 0.985 0 0;
+    --sidebar-accent: 0.93 0.02 240;
+    --sidebar-accent-foreground: 0.32 0.12 264;
+    --sidebar-border: 0.88 0.02 240;
+    --sidebar-ring: 0.52 0.12 264;
+
+    /* App-specific tokens */
+    --navy: oklch(0.28 0.13 264);
+    --navy-mid: oklch(0.38 0.14 264);
+    --navy-light: oklch(0.52 0.14 264);
+    --indigo-soft: oklch(0.88 0.06 264);
+    --indigo-muted: oklch(0.93 0.03 264);
+    --page-bg: oklch(0.955 0.012 240);
+    --card-bg: oklch(1 0 0);
+    --card-shadow: 0 2px 8px oklch(0.28 0.13 264 / 0.08), 0 1px 3px oklch(0.28 0.13 264 / 0.06);
+    --card-shadow-hover: 0 6px 20px oklch(0.28 0.13 264 / 0.12), 0 2px 6px oklch(0.28 0.13 264 / 0.08);
+    --encrypt-bg: oklch(0.95 0.04 264);
+    --encrypt-border: oklch(0.82 0.08 264);
+    --decrypt-bg: oklch(0.95 0.04 160);
+    --decrypt-border: oklch(0.82 0.08 160);
+    --text-primary: oklch(0.18 0.025 255);
+    --text-secondary: oklch(0.42 0.04 255);
+    --text-muted: oklch(0.58 0.03 255);
+  }
+
+  .dark {
+    --background: 0.145 0 0;
+    --foreground: 0.985 0 0;
+    --card: 0.205 0 0;
+    --card-foreground: 0.985 0 0;
+    --popover: 0.269 0 0;
+    --popover-foreground: 0.985 0 0;
+    --primary: 0.72 0.12 264;
+    --primary-foreground: 0.18 0.025 255;
+    --secondary: 0.269 0 0;
+    --secondary-foreground: 0.985 0 0;
+    --muted: 0.269 0 0;
+    --muted-foreground: 0.708 0 0;
+    --accent: 0.371 0 0;
+    --accent-foreground: 0.985 0 0;
+    --destructive: 0.704 0.191 22.216;
+    --destructive-foreground: 0.205 0 0;
+    --border: 1 0 0 / 10%;
+    --input: 1 0 0 / 15%;
+    --ring: 0.556 0 0;
+    --chart-1: 0.488 0.243 264.376;
+    --chart-2: 0.696 0.17 162.48;
+    --chart-3: 0.769 0.188 70.08;
+    --chart-4: 0.627 0.265 303.9;
+    --chart-5: 0.645 0.246 16.439;
+    --sidebar: 0.205 0 0;
+    --sidebar-foreground: 0.985 0 0;
+    --sidebar-primary: 0.488 0.243 264.376;
+    --sidebar-primary-foreground: 0.985 0 0;
+    --sidebar-accent: 0.269 0 0;
+    --sidebar-accent-foreground: 0.985 0 0;
+    --sidebar-border: 1 0 0 / 10%;
+    --sidebar-ring: 0.439 0 0;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    background-color: var(--page-bg);
+  }
+}
+
+/* ── App Layout ─────────────────────────────────────────────────────────────── */
+
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--page-bg);
+}
+
+.app-main {
+  flex: 1;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────────── */
+
+.app-header {
+  background: var(--navy);
+  color: oklch(0.97 0.01 240);
+  padding: 2rem 1.25rem 1.75rem;
+}
+
+.header-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: oklch(1 0 0 / 0.12);
+  border: 1px solid oklch(1 0 0 / 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: oklch(0.92 0.06 264);
+}
+
+.header-title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: oklch(0.97 0.01 240);
+  margin: 0 0 0.2rem;
+  line-height: 1.2;
+}
+
+.header-subtitle {
+  font-size: 0.78rem;
+  color: oklch(0.75 0.06 264);
+  margin: 0;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  letter-spacing: 0.01em;
+}
+
+/* ── Cards ──────────────────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--card-bg);
+  border-radius: 14px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid oklch(0.9 0.015 240);
+  padding: 1.5rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--card-shadow-hover);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.card-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.char-count {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.card-section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inline-icon {
+  color: var(--navy-light);
+}
+
+/* ── Textarea ───────────────────────────────────────────────────────────────── */
+
+.message-textarea {
+  width: 100%;
+  border: 1.5px solid oklch(0.88 0.02 240);
+  border-radius: 10px;
+  padding: 0.875rem 1rem;
+  font-size: 0.9375rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+  background: oklch(0.985 0.005 240);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  line-height: 1.6;
+  min-height: 110px;
+}
+
+.message-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.message-textarea:focus {
+  border-color: var(--navy-light);
+  box-shadow: 0 0 0 3px oklch(0.52 0.14 264 / 0.12);
+  background: oklch(1 0 0);
+}
+
+/* ── Button Row ─────────────────────────────────────────────────────────────── */
+
+.button-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease;
+  letter-spacing: -0.01em;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn--encrypt {
+  background: var(--navy);
+  color: oklch(0.97 0.01 240);
+}
+
+.btn--encrypt:not(:disabled):hover {
+  background: var(--navy-mid);
+  box-shadow: 0 4px 14px oklch(0.28 0.13 264 / 0.3);
+  transform: translateY(-1px);
+}
+
+.btn--encrypt:not(:disabled):active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn--decrypt {
+  background: oklch(0.97 0.01 240);
+  color: var(--navy);
+  border: 1.5px solid oklch(0.82 0.06 264);
+}
+
+.btn--decrypt:not(:disabled):hover {
+  background: var(--indigo-soft);
+  border-color: var(--navy-light);
+  box-shadow: 0 4px 14px oklch(0.28 0.13 264 / 0.15);
+  transform: translateY(-1px);
+}
+
+.btn--decrypt:not(:disabled):active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ── Output Card ────────────────────────────────────────────────────────────── */
+
+.output-card {
+  padding: 1.5rem;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.result-section {
+  border-radius: 10px;
+  padding: 1rem;
+  border: 1.5px solid transparent;
+}
+
+.result-section--encrypt {
+  background: var(--encrypt-bg);
+  border-color: var(--encrypt-border);
+}
+
+.result-section--decrypt {
+  background: var(--decrypt-bg);
+  border-color: var(--decrypt-border);
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.625rem;
+}
+
+.result-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.result-value {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  word-break: break-all;
+  line-height: 1.6;
+  min-height: 2.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.result-value--filled {
+  opacity: 1;
+  animation: revealResult 0.35s ease forwards;
+}
+
+.result-placeholder {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+@keyframes revealResult {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Copy Button ────────────────────────────────────────────────────────────── */
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid oklch(0.82 0.06 264);
+  background: oklch(1 0 0 / 0.7);
+  color: var(--navy-light);
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.copy-btn:hover:not(:disabled) {
+  background: var(--navy);
+  color: oklch(0.97 0.01 240);
+  border-color: var(--navy);
+}
+
+.copy-btn--copied {
+  background: oklch(0.55 0.14 160);
+  color: oklch(0.97 0.01 240);
+  border-color: oklch(0.55 0.14 160);
+}
+
+.copy-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ── Explanation Panel ──────────────────────────────────────────────────────── */
+
+.explanation-card {
+  padding: 1.5rem;
+}
+
+.explanation-intro {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: -0.5rem 0 1rem;
+  line-height: 1.5;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1.5px solid oklch(0.9 0.015 240);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.accordion-item {
+  border-bottom: 1px solid oklch(0.9 0.015 240);
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+  gap: 0.5rem;
+}
+
+.accordion-trigger:hover {
+  background: var(--indigo-muted);
+}
+
+.accordion-icon-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.accordion-icon {
+  color: var(--navy-light);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.accordion-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.accordion-chevron {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-body {
+  padding: 0 1rem 1rem;
+  border-top: 1px solid oklch(0.92 0.015 240);
+}
+
+.accordion-body p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0.75rem 0 0;
+}
+
+.accordion-body p:first-child {
+  margin-top: 0.75rem;
+}
+
+.accordion-body strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.code-block {
+  background: oklch(0.14 0.04 264);
+  color: oklch(0.88 0.06 264);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.8125rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin: 0.75rem 0 0;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────────────────── */
+
+.app-footer {
+  text-align: center;
+  padding: 1.25rem 1rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border-top: 1px solid oklch(0.9 0.015 240);
+  background: oklch(1 0 0);
+}
+
+.footer-heart {
+  color: oklch(0.62 0.2 25);
+}
+
+.footer-link {
+  color: var(--navy-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.footer-link:hover {
+  color: var(--navy);
+  text-decoration: underline;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .app-header {
+    padding: 1.5rem 1rem 1.25rem;
+  }
+
+  .header-title {
+    font-size: 1.125rem;
+  }
+
+  .header-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .header-badge {
+    width: 40px;
+    height: 40px;
+  }
+
+  .app-main {
+    padding: 1.25rem 0.875rem 2.5rem;
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1.125rem;
+    border-radius: 12px;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .button-row {
+    gap: 0.625rem;
+  }
+
+  .btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .accordion-title {
+    font-size: 0.8125rem;
+  }
+
+  .code-block {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .header-subtitle {
+    font-size: 0.65rem;
+    word-break: break-all;
+  }
+}

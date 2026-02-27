@@ -1,0 +1,93 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-27T02:14:35.897Z",
+  "summary": "The diff implements the affine cipher logic and UI components in a React/TypeScript framework (frontend/src/App.tsx, index.css, main.tsx, tailwind.config.js) rather than a single self-contained HTML file with inline CSS and JS. This fundamentally violates REQ-1, which requires a single static HTML file with all CSS in a <style> tag and all JS in a <script> tag, no external JS libraries, no build tools, and compatibility with file:// protocol. The implementation uses React, TypeScript, Tailwind, lucide-react, @tanstack/react-query, @dfinity/auth-client, and other external dependencies — all prohibited by the constraints. The logic for REQ-2, REQ-3, and REQ-4 appears to be implemented in App.tsx but is delivered through a framework build pipeline rather than the required vanilla JS single file.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Create a single frontend file containing a fully self-contained single-page app with all CSS in a <style> tag and all logic in a <script> tag — no external JS libraries, no build tools, works via file:// protocol.",
+      "reason": "The implementation uses a React/TypeScript/Tailwind/Vite build pipeline with multiple source files and external JS libraries. No single self-contained index.html with inline CSS/JS was produced. The frontend/index.html references /src/main.tsx via a module script, requiring a server/bundler.",
+      "evidence": [
+        "frontend/index.html",
+        "frontend/src/main.tsx",
+        "frontend/src/App.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Internet Identity authentication integration (useInternetIdentity hook, AuthClient, DelegationIdentity, login/clear/status flows)",
+      "reason": "The build request explicitly states user accounts and backend canister logic are non-goals. Internet Identity authentication was never requested.",
+      "evidence": [
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/main.tsx"
+      ]
+    },
+    {
+      "description": "ICP actor/canister integration (useActor hook, createActorWithConfig, backendInterface, @dfinity dependencies)",
+      "reason": "The build request explicitly states backend canister or Motoko logic is a non-goal. The app is fully static frontend-only with no ICP actor interaction required.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "React, TypeScript, Tailwind CSS, and Vite build framework used instead of vanilla JS",
+      "reason": "The constraints explicitly require no external JavaScript libraries, no build tools or frameworks, and the file must work via file:// protocol. Using React, TypeScript, Tailwind, and a build pipeline directly violates these constraints.",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend/src/main.tsx",
+        "frontend/tailwind.config.js",
+        "frontend/src/index.css"
+      ]
+    },
+    {
+      "description": "lucide-react icon library used (Copy, Check, Lock, Unlock, ChevronDown, Shield, Hash, Calculator, BookOpen icons)",
+      "reason": "The constraints explicitly prohibit external JavaScript libraries. lucide-react is an external JS dependency not permitted by the build request.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "description": "@tanstack/react-query used for actor state management",
+      "reason": "This is an external JS library not permitted by the constraints, and actor/query management was not requested for this purely static frontend app.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/main.tsx"
+      ]
+    },
+    {
+      "description": "Dark mode CSS variables and theming",
+      "reason": "Dark mode support was not requested in the build request or acceptance criteria.",
+      "evidence": [
+        "frontend/src/index.css",
+        "frontend/index.css"
+      ]
+    },
+    {
+      "description": "JetBrains Mono font loaded alongside Inter",
+      "reason": "Only Inter was specified in REQ-4. JetBrains Mono was not requested.",
+      "evidence": [
+        "frontend/src/index.css"
+      ]
+    }
+  ],
+  "confidence": 0.95,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Single-page web app called 'Mathematical Encryption Model' implementing affine cipher encryption/decryption (E(x) = (3x + 5) mod 26) with a clean academic UI, explanation panel, and copy functionality — all in a single index.html file using vanilla HTML/CSS/JS.",
+  "architectural_notes": [
+    "Single index.html file with inline CSS and JS — no external dependencies, works via file:// protocol",
+    "Affine cipher: Encryption E(x) = (3x + 5) mod 26, Decryption D(x) = 9(x − 5) mod 26; letters only, case preserved",
+    "UI: header, input card, encrypt/decrypt buttons, output card with two sections, accordion explanation panel",
+    "Design: white cards on light gray/blue bg, deep navy/indigo accent, Inter or system fonts, mobile responsive"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a single frontend file (frontend/public/index.html or equivalent static entry) containing a fully self-contained single-page app titled 'Mathematical Encryption Model' with all CSS in a <style> tag and all logic in a <script> tag — no external JS libraries, no build tools, works via file:// protocol.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Implement affine cipher encryption using E(x) = (3x + 5) mod 26 and decryption using D(x) = 9(x − 5) mod 26. Only A–Z and a–z are transformed; spaces, digits, and punctuation pass through unchanged. Original letter case must be preserved in the output.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Build the interface layout with five sections: (1) Header with title 'Mathematical Encryption Model' and a subtle subtitle; (2) Input Card with a textarea labeled 'Enter Message'; (3) Button Row with 'Encrypt' and 'Decrypt' buttons side by side; (4) Output Card with two sub-sections — 'Encrypted Text' and 'Decrypted Text' — each showing a result field with a copy-to-clipboard button; (5) Explanation Panel as an accordion with four entries: letter-to-number mapping (A=0…Z=25), modular arithmetic overview, why 9 is the modular inverse of 3 mod 26 (3×9=27≡1 mod 26), and how encryption protects digital data.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Apply a minimal academic design: white cards on a light gray-blue background, accent color deep navy or indigo, rounded corners (border-radius), soft box shadows on cards, easy-to-read typography (Inter via Google Fonts with system-font fallback), subtle hover animations on buttons, and a subtle reveal animation when results appear. Ensure full mobile responsiveness with appropriate max-width media queries.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Mathematical Encryption Model",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

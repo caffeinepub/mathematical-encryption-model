@@ -1,0 +1,77 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Mathematical Encryption Model – Affine Cipher Single-Page App",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create a fully self-contained single-page app in one HTML file with inline CSS and JS, working via file:// protocol",
+      "acceptanceCriteria": [
+        "Opening the file directly in a browser (file://) requires no server and loads without errors.",
+        "No external JS or CSS libraries are referenced.",
+        "All styles are inside a <style> tag and all logic inside a <script> tag."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/index.html",
+          "operation": "create",
+          "description": "Create a single self-contained HTML file with DOCTYPE, html, head, and body structure. Include Google Fonts link for Inter in head. Add a <style> tag containing all CSS for the app. Add a <script> tag at the end of body containing all vanilla JavaScript logic for encryption, decryption, UI interactions, and accordion functionality. Ensure the file works without a server via file:// protocol."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement affine cipher encryption E(x)=(3x+5) mod 26 and decryption D(x)=9(x−5) mod 26 with case preservation and pass-through for non-letters",
+      "acceptanceCriteria": [
+        "Encrypting 'Hello World!' produces the correct affine cipher output with 'H', 'W', '!' and space handled correctly.",
+        "Decrypting the encrypted output returns the original plaintext with matching case.",
+        "Non-letter characters appear unchanged in both encrypted and decrypted results."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/index.html",
+          "operation": "modify",
+          "description": "Add JavaScript functions in the <script> tag: letterToNumber (A=0...Z=25), numberToLetter, modulo helper, encryptChar using (3x+5) mod 26, decryptChar using 9(x−5) mod 26, encryptMessage, and decryptMessage. Preserve original case by tracking whether input char was uppercase or lowercase and applying the same case to the output. Pass through spaces, digits, and punctuation unchanged."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build interface with Header, Input Card, Button Row, Output Card (Encrypted/Decrypted sub-sections with copy buttons), and Explanation Panel accordion with four mathematical entries",
+      "acceptanceCriteria": [
+        "All five layout sections are visible and correctly ordered on page load.",
+        "Clicking Encrypt populates the 'Encrypted Text' result field.",
+        "Clicking Decrypt populates the 'Decrypted Text' result field.",
+        "Each result field has a working copy-to-clipboard button.",
+        "The accordion items expand/collapse individually when clicked.",
+        "All four explanation entries are present with correct mathematical content."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/index.html",
+          "operation": "modify",
+          "description": "Add HTML structure in body: (1) Header section with h1 'Mathematical Encryption Model' and subtitle paragraph; (2) Input Card section containing a textarea labeled 'Enter Message'; (3) Button Row section with Encrypt and Decrypt buttons side by side; (4) Output Card section with two sub-sections titled 'Encrypted Text' and 'Decrypted Text', each containing a result display area and a copy-to-clipboard button; (5) Explanation Panel section with four accordion items: letter-to-number mapping (A=0...Z=25), modular arithmetic overview, explanation of 9 as modular inverse of 3 mod 26 (3×9=27≡1 mod 26), and how encryption protects digital data. Add event listeners in <script> to wire Encrypt/Decrypt buttons to populate result fields, wire copy buttons to copy text to clipboard, and wire accordion headers to toggle expansion of accordion content panels."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Apply minimal academic design with white cards on light gray-blue background, deep navy/indigo accent, rounded corners, soft shadows, Inter font, hover animations, result reveal animations, and mobile responsiveness",
+      "acceptanceCriteria": [
+        "Cards display with visible rounded corners and box shadows.",
+        "Background is light gray-blue; cards are white; primary accent color is deep navy or indigo.",
+        "Buttons show a visible hover transition (color shift or shadow change).",
+        "Result fields animate in (e.g., fade or slide) when populated.",
+        "Layout is usable and unclipped on a 375px-wide mobile viewport.",
+        "Inter font loads from Google Fonts; a system-font stack is specified as fallback."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/index.html",
+          "operation": "modify",
+          "description": "Add CSS rules in the <style> tag: set body background to light gray-blue (#f0f4f8 or similar); define card styles with white background, rounded corners (border-radius: 12px), and soft box-shadow; set accent color to deep navy or indigo (#1e3a8a or similar) for buttons and headings; apply font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; add button hover transitions (background-color and box-shadow changes); add @keyframes for result reveal animation (fade-in or slide-up); add media queries for max-width 768px and 480px to stack elements vertically, reduce padding, and ensure usable layout on 375px-wide mobile viewport."
+        }
+      ]
+    }
+  ]
+}

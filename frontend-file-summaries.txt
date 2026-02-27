@@ -1,0 +1,5 @@
+{
+  "frontend/src/App.tsx": "Complete Mathematical Encryption Model single-page app implementing affine cipher encryption (E(x)=(3x+5) mod 26) and decryption (D(x)=9(x−5) mod 26) with a header, input card, encrypt/decrypt buttons, dual result fields with copy-to-clipboard, and a four-item accordion explanation panel.",
+  "frontend/src/index.css": "Global styles defining the academic design system with OKLCH color tokens (deep navy/indigo palette, light gray-blue page background), Inter + JetBrains Mono fonts, card/button/accordion/result-reveal animations, and full mobile responsiveness.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with Inter/JetBrains Mono font families, OKLCH-based color tokens, card box-shadow utilities, and reveal-result keyframe animation."
+}
